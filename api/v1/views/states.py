@@ -27,7 +27,6 @@ def get_state(state_id):
     methods=['DELETE'],
     strict_slashes=False
 )
-
 def delete_state(state_id):
     """Delete a State object by ID."""
     state = storage.get(State, state_id)
