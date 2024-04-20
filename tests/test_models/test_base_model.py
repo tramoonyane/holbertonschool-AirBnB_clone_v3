@@ -158,3 +158,19 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(old_created_at, new_created_at)
         self.assertTrue(mock_storage.new.called)
         self.assertTrue(mock_storage.save.called)
+
+    def test_init_with_valid_arguments(self):
+        """Test initialization with valid arguments"""
+        valid_args = {
+            "id": "valid_id",
+            "created_at": "2022-01-01T12:00:00.000000",
+            "updated_at": "2022-01-01T12:00:00.000000",
+            "name": "TestName",
+            "number": 42
+        }
+        inst = BaseModel(**valid_args)
+        self.assertEqual(inst.id, "valid_id")
+        self.assertEqual(inst.created_at, datetime(2022, 1, 1, 12, 0))
+        self.assertEqual(inst.updated_at, datetime(2022, 1, 1, 12, 0))
+        self.assertEqual(inst.name, "TestName")
+        self.assertEqual(inst.number, 42)
