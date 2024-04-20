@@ -175,10 +175,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(inst.name, "TestName")
         self.assertEqual(inst.number, 42)
 
-    def test_save_without_changes(self):
-        """Test that save method doesn't update `updated_at` without changes"""
+    def test_save_with_changes(self):
+        """Test that save method updates `updated_at` after changes"""
         inst = BaseModel()
         old_updated_at = inst.updated_at
+        inst.name = "NewName"
         inst.save()
         new_updated_at = inst.updated_at
-        self.assertEqual(old_updated_at, new_updated_at)
+        self.assertNotEqual(old_updated_at, new_updated_at)
