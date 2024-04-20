@@ -7,6 +7,9 @@ from api.v1.views import app_views
 
 app = Flask(__name__)
 
+# Register the blueprint app_views to the Flask instance app
+app.register_blueprint(app_views)
+
 
 @app.teardown_appcontext
 def teardown_db(exception):
