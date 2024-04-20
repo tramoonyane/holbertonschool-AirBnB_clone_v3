@@ -198,5 +198,10 @@ class TestBaseModel(unittest.TestCase):
         inst.save()
         new_updated_at = inst.updated_at
         self.assertEqual(old_updated_at, new_updated_at)
-        # Check if the difference between old_updated_at and new_updated_at is within 1 millisecond
-        self.assertAlmostEqual(old_updated_at.timestamp(), new_updated_at.timestamp(), delta=0.001)
+        # Check if the difference between old_updated_at and new_updated_at
+        # is within 1 millisecond
+        self.assertAlmostEqual(
+            old_updated_at.timestamp(),
+            new_updated_at.timestamp(),
+            delta=0.001
+        )
