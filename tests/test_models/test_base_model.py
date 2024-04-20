@@ -206,4 +206,3 @@ class TestBaseModel(unittest.TestCase):
         inst.save()
         new_updated_at_2 = inst.updated_at
         self.assertNotEqual(new_updated_at_1, new_updated_at_2)
-
