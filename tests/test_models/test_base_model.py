@@ -174,3 +174,11 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(inst.updated_at, datetime(2022, 1, 1, 12, 0))
         self.assertEqual(inst.name, "TestName")
         self.assertEqual(inst.number, 42)
+
+    def test_init_with_invalid_arguments(self):
+        """Test initialization with invalid arguments"""
+        invalid_args = {
+            "invalid_attr": "value"
+        }
+        inst = BaseModel(**invalid_args)
+        self.assertFalse(hasattr(inst, "invalid_attr"))
