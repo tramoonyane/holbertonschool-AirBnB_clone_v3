@@ -118,3 +118,8 @@ class TestDBStorage(unittest.TestCase):
         """Set up for the tests"""
         # Set up DBStorage instance
         self.db_storage = DBStorage()
+
+    def tearDown(self):
+        """Clean up after each test"""
+        # Close the DB session after each test
+        self.db_storage.close()
