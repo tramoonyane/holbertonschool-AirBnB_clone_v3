@@ -191,17 +191,19 @@ class TestBaseModel(unittest.TestCase):
         d = inst.to_dict()
         self.assertIn("some_attr", d.keys())
 
-    def test_save_without_changes(self):
-        """Test that save method doesn't update `updated_at` without changes"""
+    def test_save_multiple_times(self):
+        """Test that save method updates `updated_at` each time it's called"""
         inst = BaseModel()
         old_updated_at = inst.updated_at
         inst.save()
-        new_updated_at = inst.updated_at
-        self.assertEqual(old_updated_at, new_updated_at)
-        # Check if the difference between old_updated_at and new_updated_at
-        # is within 1 millisecond
-        self.assertAlmostEqual(
-            old_updated_at.timestamp(),
-            new_updated_at.timestamp(),
-            delta=0.001
-        )
+        new_updated_at_1 = inst.updated_at
+        self.assertNotEqual(old_updated_at, new_updated_at_1)
+
+        # Sleep to ensure the updated_at value will be different
+        # when save is called again
+        time.sleep(0.001)
+
+        inst.save()
+        new_updated_at_2 = inst.updated_at
+        self.assertNotEqual(new_updated_at_1, new_updated_at_2)
+
