@@ -183,3 +183,10 @@ class TestBaseModel(unittest.TestCase):
         inst.save()
         new_updated_at = inst.updated_at
         self.assertNotEqual(old_updated_at, new_updated_at)
+
+    def test_to_dict_exclude_attributes(self):
+        """Test that certain attributes are excluded from to_dict"""
+        inst = BaseModel()
+        inst.some_attr = "value"
+        d = inst.to_dict()
+        self.assertNotIn("some_attr", d.keys())
