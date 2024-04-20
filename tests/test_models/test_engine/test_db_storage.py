@@ -109,3 +109,12 @@ class TestFileStorage(unittest.TestCase):
         storage.new(state)
         storage.save()
         self.assertTrue(storage.count(State) > 0)
+
+
+class TestDBStorage(unittest.TestCase):
+    """Test methods related to DBStorage"""
+
+    def setUp(self):
+        """Set up for the tests"""
+        # Set up DBStorage instance
+        self.db_storage = DBStorage()
