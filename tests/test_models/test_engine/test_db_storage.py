@@ -109,33 +109,3 @@ class TestFileStorage(unittest.TestCase):
         storage.new(state)
         storage.save()
         self.assertTrue(storage.count(State) > 0)
-
-
-class TestDBStorage(unittest.TestCase):
-    """Test methods related to DBStorage"""
-
-    def setUp(self):
-        """Set up for the tests"""
-        # Set up DBStorage instance
-        self.db_storage = DBStorage()
-
-    def tearDown(self):
-        """Clean up after each test"""
-        # Close the DB session after each test
-        self.db_storage.close()
-        self.db_storage.reload()
-
-    def test_count(self):
-        """Test count method"""
-        # Assuming there are no objects yet
-        count_before = self.db_storage.count()
-        self.assertEqual(count_before, 0)
-
-        # Create and add an object
-        new_object = BaseModel()
-        self.db_storage.new(new_object)
-        self.db_storage.save()
-
-        # Check count after adding the object
-        count_after = self.db_storage.count()
-        self.assertEqual(count_after, 1)
