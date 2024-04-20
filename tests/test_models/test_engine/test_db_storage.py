@@ -124,10 +124,10 @@ class TestDBStorage(unittest.TestCase):
         # Close the DB session after each test
         self.db_storage.close()
 
-    def test_storage_get_count(self):
-        """Test storage_get_count method"""
+    def test_count(self):
+        """Test count method"""
         # Assuming there are no objects yet
-        count_before = self.db_storage.storage_get_count()
+        count_before = self.db_storage.count()
         self.assertEqual(count_before, 0)
 
         # Create and add an object
@@ -136,5 +136,5 @@ class TestDBStorage(unittest.TestCase):
         self.db_storage.save()
 
         # Check count after adding the object
-        count_after = self.db_storage.storage_get_count()
+        count_after = self.db_storage.count()
         self.assertEqual(count_after, 1)
