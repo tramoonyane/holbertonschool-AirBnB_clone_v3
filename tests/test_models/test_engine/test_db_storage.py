@@ -123,6 +123,7 @@ class TestDBStorage(unittest.TestCase):
         """Clean up after each test"""
         # Close the DB session after each test
         self.db_storage.close()
+        self.db_storage.reload()
 
     def test_count(self):
         """Test count method"""
