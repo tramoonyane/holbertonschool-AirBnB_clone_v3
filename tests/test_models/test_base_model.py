@@ -190,7 +190,7 @@ class TestBaseModel(unittest.TestCase):
         inst.some_attr = "value"
         d = inst.to_dict()
         self.assertIn("some_attr", d.keys())
-        
+
     def test_save_without_changes(self):
         """Test that save method doesn't update `updated_at` without changes"""
         inst = BaseModel()
