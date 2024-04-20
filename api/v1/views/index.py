@@ -1,33 +1,46 @@
 #!/usr/bin/python3
-"""Flask application that retrieves information"""
-from api.v1.views import app_views
+"""
+index
+"""
+
 from flask import jsonify
+from api.v1.views import app_views
+
+from models import storage
 
 
-@app_views.route("/status", strict_slashes=False)
+@app_views.route("/status", methods=['GET'], strict_slashes=False)
 def status():
-    """Returns the app status"""
-    return jsonify({"status": "OK"})
-
-
-@app_views.route("/stats", methods=["GET"], strict_slashes=False)
-def stats():
-    """Retrieves the number of objects per each type"""
-    from models.amenity import Amenity
-    from models.city import City
-    from models.place import Place
-    from models.review import Review
-    from models.state import State
-    from models.user import User
-    from models import storage
-    import json
-    dic = {
-        "amenities": storage.count(Amenity),
-        "cities": storage.count(City),
-        "places": storage.count(Place),
-        "reviews": storage.count(Review),
-        "states": storage.count(State),
-        "users": storage.count(User)
+    """
+    status route
+    :return: response with json
+    """
+    data = {
+        "status": "OK"
     }
-    json_dict = json.dumps(dic, indent=2)
-    return json_dict
+
+    resp = jsonify(data)
+    resp.status_code = 200
+
+    return resp
+
+
+@app_views.route("/stats", methods=['GET'], strict_slashes=False)
+def stats():
+    """
+    stats of all objs route
+    :return: json of all objs
+    """
+    data = {
+        "amenities": storage.count("Amenity"),
+        "cities": storage.count("City"),
+        "places": storage.count("Place"),
+        "reviews": storage.count("Review"),
+        "states": storage.count("State"),
+        "users": storage.count("User"),
+    }
+
+    resp = jsonify(data)
+    resp.status_code = 200
+
+    return resp
