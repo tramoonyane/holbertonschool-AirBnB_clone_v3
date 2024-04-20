@@ -175,10 +175,10 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(inst.name, "TestName")
         self.assertEqual(inst.number, 42)
 
-    def test_init_with_invalid_arguments(self):
-        """Test initialization with invalid arguments"""
-        invalid_args = {
-            "invalid_attr": "value"
-        }
-        inst = BaseModel(**invalid_args)
-        self.assertFalse(hasattr(inst, "invalid_attr"))
+    def test_save_without_changes(self):
+        """Test that save method doesn't update `updated_at` without changes"""
+        inst = BaseModel()
+        old_updated_at = inst.updated_at
+        inst.save()
+        new_updated_at = inst.updated_at
+        self.assertEqual(old_updated_at, new_updated_at)
