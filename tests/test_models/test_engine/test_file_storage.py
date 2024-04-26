@@ -161,3 +161,13 @@ class TestFileStorage(unittest.TestCase):
         storage.save()
         new_count = storage.count()
         self.assertEqual(new_count, initial_count + 1)
+
+    def test_count_objects_of_specific_class(self):
+        """Test counting objects of a specific class"""
+        initial_count = storage.count(State)
+        state = State()
+        state.name = "California"
+        storage.new(state)
+        storage.save()
+        new_count = storage.count(State)
+        self.assertEqual(new_count, initial_count + 1)
