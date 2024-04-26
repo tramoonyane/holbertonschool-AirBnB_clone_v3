@@ -122,3 +122,8 @@ class TestDBStorage(unittest.TestCase):
         storage.save()
         retrieved_state = storage.get(State, state.id)
         self.assertEqual(retrieved_state, state)
+
+    def test_get_nonexistent_object(self):
+        """Test retrieving a non-existing object"""
+        retrieved_state = storage.get(State, "nonexistent_id")
+        self.assertIsNone(retrieved_state)
