@@ -109,3 +109,15 @@ class TestFileStorage(unittest.TestCase):
         storage.new(state)
         storage.save()
         self.assertTrue(storage.count(State) > 0)
+
+
+class TestDBStorage(unittest.TestCase):
+    """Test the DBStorage class"""
+    def test_get_existing_object(self):
+        """Test retrieving an existing object"""
+        state = State()
+        state.name = "California"
+        storage.new(state)
+        storage.save()
+        retrieved_state = storage.get(State, state.id)
+        self.assertEqual(retrieved_state, state)
