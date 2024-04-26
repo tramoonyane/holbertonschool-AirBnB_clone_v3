@@ -151,3 +151,13 @@ class TestFileStorage(unittest.TestCase):
         """Test retrieving a non-existing object"""
         retrieved_state = storage.get(State, "nonexistent_id")
         self.assertIsNone(retrieved_state)
+
+    def test_count_all_objects(self):
+        """Test counting all objects"""
+        initial_count = storage.count()
+        state = State()
+        state.name = "California"
+        storage.new(state)
+        storage.save()
+        new_count = storage.count()
+        self.assertEqual(new_count, initial_count + 1)
