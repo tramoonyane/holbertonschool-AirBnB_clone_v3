@@ -151,7 +151,104 @@ EOF  all  create  destroy  help  quit  show  update
 ```
 
 ## Bugs
-No known bugs at this time. 
+No known bugs at this time.
+
+# AirBnB clone - Web dynamic
+
+How Cool it is to Request Your Own API
+Requesting your own API allows you to interact with your server to fetch or manipulate data dynamically. This enables you to create dynamic, responsive web applications that can update content without requiring a full page reload. It also allows for more efficient data management and real-time updates, enhancing the user experience.
+
+How to Modify an HTML Element Style
+You can modify an HTML element's style using JavaScript by accessing the element and setting its style property.
+
+Exammple:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modify Style</title>
+</head>
+<body>
+    <p id="myParagraph">This is a paragraph.</p>
+    <script>
+        const paragraph = document.getElementById('myParagraph');
+        paragraph.style.color = 'blue';
+        paragraph.style.fontSize = '20px';
+    </script>
+</body>
+</html>
+
+How to Modify the DOM
+Modifying the DOM involves using JavaScript to change the structure of the HTML document, such as adding, removing, or altering elements.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modify DOM</title>
+</head>
+<body>
+    <ul id="myList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+    </ul>
+    <button onclick="addItem()">Add Item</button>
+    <script>
+        function addItem() {
+            const list = document.getElementById('myList');
+            const newItem = document.createElement('li');
+            newItem.innerHTML = 'Item 3';
+            list.appendChild(newItem);
+        }
+    </script>
+</body>
+</html>
+
+How to Make a POST Request with jQuery Ajax
+A POST request can be made using $.ajax() or the shorthand method $.post().
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>POST Request</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="sendData">Send Data</button>
+    <script>
+        $('#sendData').click(function() {
+            $.post('https://api.example.com/submit', { name: 'John', age: 30 }, function(response) {
+                alert('Data sent successfully!');
+            });
+        });
+    </script>
+</body>
+</html>
+
+How to Listen/Bind to DOM Events
+You can listen to DOM events using JavaScript by adding event listeners to elements.
+
+Example:
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Listener</title>
+</head>
+<body>
+    <button id="myButton">Click me</button>
+    <script>
+        const button = document.getElementById('myButton');
+        button.addEventListener('click', function() {
+            alert('Button was clicked!');
+        });
+    </script>
+</body>
+</html>
+
 
 ## Authors
 Alexa Orrico - [Github](https://github.com/alexaorrico) / [Twitter](https://twitter.com/alexa_orrico)  
