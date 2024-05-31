@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const nameAmenity = [];
   $('input:checkbox').click(function () {
-    if ($(this).is(":checked")) {
+    if ($(this).is(':checked')) {
       nameAmenity.push($(this).attr('data-name'));
     } else {
       const nameIndex = nameAmenity.indexOf($(this).attr('data-name'));
@@ -10,11 +10,11 @@ $(document).ready(function () {
     $('.amenities h4').text(nameAmenity.join(', '));
   });
 
-  $.get("http://localhost:5001/api/v1/status/", data => {
-    if (data.status == "OK") {
-      $('DIV#api_status').addClass("available");
+  $.get('http://localhost:5001/api/v1/status/', data => {
+    if (data.status == 'OK') {
+      $('DIV#api_status').addClass('available');
     } else {
-      $('DIV#api_status').removeClass("available");
+      $('DIV#api_status').removeClass('available');
     }
   });
 
@@ -39,9 +39,8 @@ $(document).ready(function () {
                   <div class="description">
                     ${place.description}
                   </div>
-                </article>`
+                </article>`;
       }));
     }
   });
-
 });

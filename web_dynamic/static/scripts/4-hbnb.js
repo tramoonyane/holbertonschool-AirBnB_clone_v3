@@ -1,7 +1,7 @@
 $(document).ready(function () {
   const nameAmenity = {};
   $('input:checkbox').click(function () {
-    if ($(this).is(":checked")) {
+    if ($(this).is(':checked')) {
       nameAmenity[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
       delete nameAmenity[$(this).attr('data-id')];
@@ -9,11 +9,11 @@ $(document).ready(function () {
     $('.amenities h4').text(Object.values(nameAmenity).join(', '));
   });
 
-  $.get("http://localhost:5001/api/v1/status/", data => {
-    if (data.status == "OK") {
-      $('DIV#api_status').addClass("available");
+  $.get('http://localhost:5001/api/v1/status/', data => {
+    if (data.status == 'OK') {
+      $('DIV#api_status').addClass('available');
     } else {
-      $('DIV#api_status').removeClass("available");
+      $('DIV#api_status').removeClass('available');
     }
   });
 
@@ -22,7 +22,7 @@ $(document).ready(function () {
       type: 'POST',
       url: 'http://localhost:5001/api/v1/places_search',
       data: JSON.stringify(filters),
-      //dataType: 'json',
+      // dataType: 'json',
       contentType: 'application/json',
       success: function (data) {
         $('SECTION.places').empty();
@@ -40,14 +40,14 @@ $(document).ready(function () {
                     <div class="description">
                       ${place.description}
                     </div>
-                  </article>`
+                  </article>`;
         }));
       }
     });
   };
 
   $('#search').click(function () {
-    const filters = {amenities: Object.keys(nameAmenity)};
+    const filters = { amenities: Object.keys(nameAmenity) };
     search(filters);
   });
 

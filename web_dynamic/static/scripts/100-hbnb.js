@@ -1,18 +1,17 @@
 $(document).ready(function () {
-
   const HOST = 'localhost';
 
   // Get api status
   $.get(`http://${HOST}:5001/api/v1/status/`, data => {
-    if (data.status == "OK") {
-      $('DIV#api_status').addClass("available");
+    if (data.status == 'OK') {
+      $('DIV#api_status').addClass('available');
     } else {
-      $('DIV#api_status').removeClass("available");
+      $('DIV#api_status').removeClass('available');
     }
   });
 
   // Update h2 tag with selected locations (states and cities)
-  function updateLocations(states, cities) {
+  function updateLocations (states, cities) {
     const locations = Object.assign({}, states, cities);
     if (Object.values(locations).length === 0) {
       $('.locations h4').html('&nbsp;');
@@ -24,7 +23,7 @@ $(document).ready(function () {
   // Obtain selected states
   const states = {};
   $('.locations ul h2 input[type="checkbox"]').click(function () {
-    if ($(this).is(":checked")) {
+    if ($(this).is(':checked')) {
       states[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
       delete states[$(this).attr('data-id')];
@@ -35,7 +34,7 @@ $(document).ready(function () {
   // Obtain selected cities
   const cities = {};
   $('.locations ul ul li input[type="checkbox"]').click(function () {
-    if ($(this).is(":checked")) {
+    if ($(this).is(':checked')) {
       cities[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
       delete cities[$(this).attr('data-id')];
@@ -46,7 +45,7 @@ $(document).ready(function () {
   // Obtain selected amenities
   const amenities = {};
   $('.amenities input[type="checkbox"]').click(function () {
-    if ($(this).is(":checked")) {
+    if ($(this).is(':checked')) {
       amenities[$(this).attr('data-id')] = $(this).attr('data-name');
     } else {
       delete amenities[$(this).attr('data-id')];
@@ -78,18 +77,18 @@ $(document).ready(function () {
                     <div class="description">
                       ${place.description}
                     </div>
-                  </article>`
+                  </article>`;
         }));
       }
     });
-  };
+  }
 
   // Search event with selected filters
   $('#search').click(function () {
     const filters = {
-      'states': Object.keys(states),
-      'cities': Object.keys(cities),
-      'amenities': Object.keys(amenities)
+      states: Object.keys(states),
+      cities: Object.keys(cities),
+      amenities: Object.keys(amenities)
     };
     search(filters);
   });
