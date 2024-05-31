@@ -18,7 +18,7 @@ def hbnb():
     amenities = storage.all("Amenity")
     places = storage.all("Place")
     cache_id = uuid.uuid4()
-    return render_template("100-hbnb.html",
+    return render_template("0-hbnb.html",
                            states=states, amenities=amenities, places=places, cache_id=cache_id)
 
 @app.teardown_appcontext
