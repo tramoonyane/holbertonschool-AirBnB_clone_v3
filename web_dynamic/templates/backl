@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>AirBnB Clone</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles/4-common.css?cache_id={{ cache_id }}"/>
+    <link rel="stylesheet" href="styles/3-header.css?cache_id={{ cache_id }}"/>
+    <link rel="stylesheet" href="styles/3-footer.css?cache_id={{ cache_id }}"/>
+    <link rel="stylesheet" href="styles/6-filters.css"?cache_id={{ cache_id }}/>
+    <link rel="stylesheet" href="styles/8-places.css?cache_id={{ cache_id }}"/>
+    <link rel="icon" href="images/icon.png?cache_id={{ cache_id }}" type="image/png">
+</head>
+<body>
+    <header>
+        <div id="header_logo"></div>
+    </header>
+    <div class="container">
+        <section class="filters">
+            <button>Search</button>
+            <div class="locations">
+                <h3>States</h3>
+                <h4>&nbsp;</h4> <!-- Replace content with non-breaking space -->
+                <ul class="popover">
+                    <!-- Iterate through sorted states and cities -->
+                    {% for state in states|sort(attribute='name') %}
+                    <li>
+                        <h2>{{ state.name }}</h2>
+                        <ul>
+                            {% for city in state.cities|sort(attribute='name') %}
+                            <li><h4>{{ city.name }}</h4></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <h4>&nbsp;</h4> <!-- Replace content with non-breaking space -->
+                <ul class="popover">
+                    <!-- Iterate through sorted amenities -->
+                    {% for amenity in amenities|sort(attribute='name') %}
+                    <li><h4>{{ amenity.name }}</h4></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <section class="places">
+            <h1>Places</h1>
+            <!-- Add place cards here -->
+            {% for place in places %}
+            <article>
+                <div class="headline">
+                    <h2>{{ place.name }}</h2>
+                    <div class="price_by_night">${{ place.price_per_night }}</div>
+                </div>
+                <div class="information">
+                    <div class="max_guest">
+                        <div class="guest_icon"></div>
+                        <p>{{ place.max_guests }} Guests</p>
+                    </div>
+                    <div class="number_rooms">
+                        <div class="bed_icon"></div>
+                        <p>{{ place.number_of_bedrooms }} Bedroom{{ 's' if place.number_of_bedrooms > 1 }}</p>
+                    </div>
+                    <div class="number_bathrooms">
+                        <div class="bath_icon"></div>
+                        <p>{{ place.number_of_bathrooms }} Bathroom{{ 's' if place.number_of_bathrooms > 1 }}</p>
+                    </div>
+                </div>
+                <div class="user"><b>Owner</b>: {{ place.owner }}</div>
+                <div class="description">
+                    {{ place.description }}
+                </div>
+            </article>
+            {% endfor %}
+        </section>
+    </div>
+    <footer>
+        <p>Holberton School</p>
+    </footer>
+</body>
+</html>
